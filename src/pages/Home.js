@@ -34,7 +34,7 @@ class Home extends React.Component {
   async handleClick(event) {
     event.preventDefault();
     const { name, value } = event.target;
-    this.setState({
+    await this.setState({
       [name]: value,
     });
     const { search, categoryFilter } = this.state;
@@ -60,6 +60,7 @@ class Home extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <Link to="/cart" data-testid="shopping-cart-button"> Carrinho </Link>
+        <p>Favor clicar 2 vezes :)</p>
         <ul>
           { categories
             .map(({ name, id }) => (
@@ -69,6 +70,8 @@ class Home extends React.Component {
                 <button
                   data-testid="category"
                   type="button"
+                  value={ id }
+                  name="categoryFilter"
                   onClick={ this.handleClick }
                 >
                   { name }
