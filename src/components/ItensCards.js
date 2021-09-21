@@ -3,8 +3,13 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class ItensCards extends React.Component {
+  addToCart = (title) => {
+    const product = { title };
+    localStorage.setItem('teste', JSON.stringify(product));
+  }
+
   render() {
-    const { product: { title, thumbnail, price, id } } = this.props;
+    const { product: { title, thumbnail, id, price } } = this.props;
     return (
       <section data-testid="product">
         <h1>{ title }</h1>
@@ -19,7 +24,7 @@ class ItensCards extends React.Component {
         <button
           type="button"
           data-testid="product-add-to-cart"
-          onClick={ addToCart }
+          onClick={ () => this.addToCart(title) }
         >
           Adicionar ao carrinho
         </button>
