@@ -15,6 +15,7 @@ class Home extends React.Component {
       search: '',
       searchResults: [],
       categories: [],
+      categoryFilter: '',
     };
   }
 
@@ -23,14 +24,23 @@ class Home extends React.Component {
   }
 
   handleChange(event) {
+    event.preventDefault();
+    const { name, value } = event.target;
     this.setState({
-      search: event.target.value,
+      [name]: value,
     });
   }
 
-  async handleClick() {
-    const { search } = this.state;
-    const categoryAndQuery = await getProductsFromCategoryAndQuery('', search);
+  async handleClick(event) {
+    event.preventDefault();
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value,
+    });
+    const { search, categoryFilter } = this.state;
+    const categoryAndQuery = await getProductsFromCategoryAndQuery(
+      categoryFilter, search,
+    );
     const resultsCategoryAndQuery = categoryAndQuery.results;
     this.setState({
       searchResults: resultsCategoryAndQuery,
@@ -52,7 +62,18 @@ class Home extends React.Component {
         <Link to="/cart" data-testid="shopping-cart-button"> Carrinho </Link>
         <ul>
           { categories
-            .map(({ name, id }) => <li data-testid="category" key={ id }>{ name }</li>) }
+            .map(({ name, id }) => (
+              <li
+                key={ id }
+              >
+                <button
+                  data-testid="category"
+                  type="button"
+                  onClick={ this.handleClick }
+                >
+                  { name }
+                </button>
+              </li>)) }
         </ul>
         <form>
           <label htmlFor="search">
