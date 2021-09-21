@@ -16,6 +16,14 @@ class ItensCards extends React.Component {
         >
           Detalhes do produto
         </Link>
+        <button
+          type="button"
+          data-testid="product-add-to-cart"
+          onClick={ addToCart }
+        >
+          Adicionar ao carrinho
+        </button>
+
       </section>
     );
   }
