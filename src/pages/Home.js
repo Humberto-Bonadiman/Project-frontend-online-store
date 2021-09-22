@@ -48,10 +48,11 @@ class Home extends React.Component {
     });
   }
 
-  addToCart = (title) => {
+  addToCart = (title, price) => {
     const { cartList } = this.state;
     const product = {
       title,
+      price,
     };
     const prevState = cartList;
     prevState.push(product);

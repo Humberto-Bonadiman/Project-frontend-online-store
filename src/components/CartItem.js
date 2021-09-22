@@ -9,21 +9,51 @@ class CartItem extends Component {
     };
   }
 
+  increment = () => {
+    this.setState((prevState) => ({
+      quantity: prevState.quantity + 1,
+    }));
+  }
+
+  decrement = () => {
+    this.setState((prevState) => ({
+      quantity: prevState.quantity - 1,
+    }));
+  }
+
   render() {
     const { quantity } = this.state;
-    const { item: { title } } = this.props;
+    const { item: { title, price } } = this.props;
     return (
       <ul>
         <li
           data-testid="shopping-cart-product-name"
         >
           { title }
+          <button
+            type="button"
+            data-testid="product-increase-quantity"
+            onClick={ this.increment }
+          >
+            +
+          </button>
           <span
             data-testid="shopping-cart-product-quantity"
           >
             Quantidade:
-            { quantity }
+            {quantity}
           </span>
+          <button
+            type="button"
+            data-testid="product-decrease-quantity"
+            onClick={ this.decrement }
+          >
+            -
+          </button>
+          <span>
+            {price}
+          </span>
+
         </li>
       </ul>
     );
@@ -33,6 +63,7 @@ class CartItem extends Component {
 CartItem.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string,
+    price: PropTypes.number,
   }).isRequired,
 };
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import CartItem from '../components/CartItem';
 
 class Cart extends React.Component {
   constructor() {
@@ -34,17 +35,7 @@ class Cart extends React.Component {
           : (
             <ul>
               {cartItems.map((item) => (
-                <li
-                  data-testid="shopping-cart-product-name"
-                  key={ item }
-                >
-                  { item.title }
-                  <span
-                    data-testid="shopping-cart-product-quantity"
-                  >
-                    Quantidade: 1
-                  </span>
-                </li>
+                <CartItem item={ item } key={ item.id } />
               ))}
             </ul>)}
       </div>
