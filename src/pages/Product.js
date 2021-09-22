@@ -7,7 +7,13 @@ class Product extends React.Component {
     return (
       <>
         <h2 data-testid="product-detail-name">{ name }</h2>
-        <h4>{ id }</h4>
+        <h4>{id}</h4>
+        <button
+          data-testid="product-detail-add-to-cart"
+          type="button"
+        >
+          Adicionar ao carrinho
+        </button>
       </>
     );
   }
