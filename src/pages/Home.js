@@ -56,52 +56,65 @@ class Home extends React.Component {
     const { search, searchResults, categories } = this.state;
     return (
       <div>
-        <p data-testid="home-initial-message">
-          Digite algum termo de pesquisa ou escolha uma categoria.
-        </p>
-        <Link to="/cart" data-testid="shopping-cart-button"> Carrinho </Link>
-        <ul>
-          { categories
-            .map(({ name, id }) => (
-              <li
-                key={ id }
-              >
-                <button
-                  data-testid="category"
-                  type="button"
-                  value={ id }
-                  name="categoryFilter"
-                  onClick={ this.handleClick }
-                >
-                  { name }
-                </button>
-              </li>)) }
-        </ul>
-        <form>
-          <label htmlFor="search">
-            Buscar:
-            <input
-              type="text"
-              data-testid="query-input"
-              name="search"
-              value={ search }
-              onChange={ this.handleChange }
-            />
-          </label>
-          <button
-            type="button"
-            onClick={ this.handleClick }
-            data-testid="query-button"
+        <section className="search-header">
+          <form className="search-home-form">
+            <label htmlFor="search">
+              <input
+                type="text"
+                data-testid="query-input"
+                name="search"
+                value={ search }
+                onChange={ this.handleChange }
+                className="search-input"
+              />
+            </label>
+            <button
+              type="button"
+              onClick={ this.handleClick }
+              data-testid="query-button"
+              className="search-button"
+            >
+              Procurar
+            </button>
+          </form>
+          <p data-testid="home-initial-message">
+            Digite algum termo de pesquisa ou escolha uma categoria.
+          </p>
+          <Link
+            to="/cart"
+            data-testid="shopping-cart-button"
+            className="cart-button"
           >
-            Procurar
-          </button>
-        </form>
-        <div>
-          { searchResults.map((product) => (<ItensCards
-            key={ product.id }
-            product={ product }
-          />)) }
-        </div>
+            Carrinho
+          </Link>
+        </section>
+        <section className="content-section">
+          <aside className="category-list">
+            <ul>
+              { categories
+                .map(({ name, id }) => (
+                  <li
+                    key={ id }
+                  >
+                    <button
+                      data-testid="category"
+                      type="button"
+                      value={ id }
+                      name="categoryFilter"
+                      onClick={ this.handleClick }
+                    >
+                      { name }
+                    </button>
+                  </li>)) }
+            </ul>
+          </aside>
+          <aside className="search-result">
+            { searchResults.map((product) => (<ItensCards
+              key={ product.id }
+              product={ product }
+            />)) }
+          </aside>
+        </section>
       </div>
     );
   }
