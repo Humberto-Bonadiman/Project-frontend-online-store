@@ -16,7 +16,7 @@ class Cart extends React.Component {
   saveCart = () => {
     const { cartItems } = this.state;
     const prodSaved = cartItems;
-    prodSaved.push(JSON.parse(localStorage.getItem('teste')));
+    prodSaved.push(JSON.parse(localStorage.getItem('cartList')));
     this.setState({
       cartItems: prodSaved,
       notHaveItems: !localStorage.getItem('cartHaveItem'),
@@ -31,7 +31,7 @@ class Cart extends React.Component {
         {notHaveItems ? <p>Seu carrinho está vazio</p>
           : (
             <ul>
-              {cartItems.map((item) => (
+              {cartItems[0].map((item) => (
                 <li
                   data-testid="shopping-cart-product-name"
                   key={ item }
@@ -40,7 +40,7 @@ class Cart extends React.Component {
                   <span
                     data-testid="shopping-cart-product-quantity"
                   >
-                    1
+                    Quantidade: 1
                   </span>
                 </li>
               ))}
