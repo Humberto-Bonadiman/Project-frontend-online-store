@@ -14,7 +14,10 @@ class Cart extends React.Component {
   }
 
   saveCart = () => {
-    const prodSaved = JSON.parse(localStorage.getItem('cartList'));
+    let prodSaved = [];
+    if (localStorage.getItem('cartList')) {
+      prodSaved = JSON.parse(localStorage.getItem('cartList'));
+    }
     this.setState({
       cartItems: prodSaved,
       notHaveItems: prodSaved.length === 0,
