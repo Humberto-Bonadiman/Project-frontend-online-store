@@ -6,6 +6,7 @@ class ItensCards extends React.Component {
   addToCart = (title) => {
     const product = { title };
     localStorage.setItem('teste', JSON.stringify(product));
+    localStorage.setItem('cartHaveItem', 'true');
   }
 
   render() {
