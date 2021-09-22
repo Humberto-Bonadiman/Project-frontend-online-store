@@ -36,7 +36,7 @@ class Cart extends React.Component {
                   data-testid="shopping-cart-product-name"
                   key={ item }
                 >
-                  {item.title}
+                  { item.title }
                   <span
                     data-testid="shopping-cart-product-quantity"
                   >
