@@ -14,24 +14,23 @@ class Cart extends React.Component {
   }
 
   saveCart = () => {
-    const { cartItems } = this.state;
-    const prodSaved = cartItems;
-    prodSaved.push(JSON.parse(localStorage.getItem('cartList')));
+    const prodSaved = JSON.parse(localStorage.getItem('cartList'));
     this.setState({
       cartItems: prodSaved,
-      notHaveItems: !localStorage.getItem('cartHaveItem'),
+      notHaveItems: prodSaved.length === 0,
     });
-    console.log(cartItems);
+    // console.log(prodSaved);
   }
 
   render() {
     const { cartItems, notHaveItems } = this.state;
+    console.log(cartItems);
     return (
       <div data-testid="shopping-cart-empty-message">
         {notHaveItems ? <p>Seu carrinho está vazio</p>
           : (
             <ul>
-              {cartItems[0].map((item) => (
+              {cartItems.map((item) => (
                 <li
                   data-testid="shopping-cart-product-name"
                   key={ item }

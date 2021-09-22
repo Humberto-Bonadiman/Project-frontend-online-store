@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
 class Product extends React.Component {
-  addToCart = (name) => {
-    const product = { name };
-    localStorage.setItem('teste', JSON.stringify(product));
-    localStorage.setItem('cartHaveItem', 'true');
+  addToCart = (title) => {
+    const product = { title };
+    let cartList = [];
+    if (localStorage.getItem('cartList')) {
+      cartList = JSON.parse(localStorage.getItem('cartList'));
+    }
+    cartList.push(product);
+    localStorage.setItem('cartList', JSON.stringify(cartList));
   }
 
   render() {
