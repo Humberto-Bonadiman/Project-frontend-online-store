@@ -14,18 +14,20 @@ class Cart extends React.Component {
   }
 
   saveCart = () => {
-    const { cartItems } = this.state;
-    const prodSaved = cartItems;
-    prodSaved.push(JSON.parse(localStorage.getItem('teste')));
+    let prodSaved = [];
+    if (localStorage.getItem('cartList')) {
+      prodSaved = JSON.parse(localStorage.getItem('cartList'));
+    }
     this.setState({
       cartItems: prodSaved,
-      notHaveItems: !localStorage.getItem('cartHaveItem'),
+      notHaveItems: prodSaved.length === 0,
     });
-    console.log(cartItems);
+    // console.log(prodSaved);
   }
 
   render() {
     const { cartItems, notHaveItems } = this.state;
+    console.log(cartItems);
     return (
       <div data-testid="shopping-cart-empty-message">
         {notHaveItems ? <p>Seu carrinho está vazio</p>
@@ -36,11 +38,11 @@ class Cart extends React.Component {
                   data-testid="shopping-cart-product-name"
                   key={ item }
                 >
-                  {item.title}
+                  { item.title }
                   <span
                     data-testid="shopping-cart-product-quantity"
                   >
-                    1
+                    Quantidade: 1
                   </span>
                 </li>
               ))}
