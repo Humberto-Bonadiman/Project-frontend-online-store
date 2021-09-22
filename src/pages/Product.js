@@ -1,7 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 class Product extends React.Component {
+  addToCart = (name) => {
+    const product = { name };
+    localStorage.setItem('teste', JSON.stringify(product));
+    localStorage.setItem('cartHaveItem', 'true');
+  }
+
   render() {
     const { match: { params: { id, name } } } = this.props;
     return (
@@ -11,9 +18,11 @@ class Product extends React.Component {
         <button
           data-testid="product-detail-add-to-cart"
           type="button"
+          onClick={ () => this.addToCart(name) }
         >
           Adicionar ao carrinho
         </button>
+        <Link to="/cart" data-testid="shopping-cart-button"> Carrinho </Link>
       </>
     );
   }

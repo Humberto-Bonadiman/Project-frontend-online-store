@@ -29,7 +29,6 @@ class ItensCards extends React.Component {
         >
           Adicionar ao carrinho
         </button>
-
       </section>
     );
   }
