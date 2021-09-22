@@ -60,7 +60,6 @@ class Home extends React.Component {
           Digite algum termo de pesquisa ou escolha uma categoria.
         </p>
         <Link to="/cart" data-testid="shopping-cart-button"> Carrinho </Link>
-        <p>Favor clicar 2 vezes :)</p>
         <ul>
           { categories
             .map(({ name, id }) => (
