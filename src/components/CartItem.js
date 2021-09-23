@@ -17,7 +17,7 @@ class CartItem extends Component {
 
   decrement = () => {
     this.setState((prevState) => ({
-      quantity: prevState.quantity - 1,
+      quantity: prevState.quantity ? prevState.quantity - 1 : 0,
     }));
   }
 
