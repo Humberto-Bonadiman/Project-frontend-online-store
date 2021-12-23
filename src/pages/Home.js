@@ -16,6 +16,7 @@ class Home extends React.Component {
       searchResults: [],
       categories: [],
       categoryFilter: '',
+      cartList: [],
     };
   }
 
@@ -45,6 +46,20 @@ class Home extends React.Component {
     this.setState({
       searchResults: resultsCategoryAndQuery,
     });
+  }
+
+  addToCart = (title, price) => {
+    const { cartList } = this.state;
+    const product = {
+      title,
+      price,
+    };
+    const prevState = cartList;
+    prevState.push(product);
+    this.setState({
+      cartList: prevState,
+    });
+    localStorage.setItem('cartList', JSON.stringify(cartList));
   }
 
   async returnCategories() {
@@ -85,6 +100,7 @@ class Home extends React.Component {
             data-testid="shopping-cart-button"
             className="cart-button"
           >
+/* */
             Carrinho
           </Link>
         </section>
@@ -115,6 +131,17 @@ class Home extends React.Component {
             />)) }
           </aside>
         </section>
+            Procurar
+          </button>
+        </form>
+        <div>
+          { searchResults.map((product) => (<ItensCards
+            key={ product.id }
+            product={ product }
+            addToCart={ this.addToCart }
+          />)) }
+        </div>
+/* */
       </div>
     );
   }
